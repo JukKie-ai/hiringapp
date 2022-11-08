@@ -18,4 +18,5 @@ urlpatterns = [
     path('<user>/members', views.memberListView, name="members"),
     path('<user>/kickMember/<id>', views.kickMemberView, name="kickMember"),
     path('<user>/leaveTeam', views.leaveTeamView.as_view(), name="leaveTeam"),
+    path('<user>/deleteTeam', views.deleteTeamView.as_view(), name="deleteTeam"),
 ]

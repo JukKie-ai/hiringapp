@@ -194,9 +194,13 @@ class leaveTeamView(View):
 
     def get(self, request, user):
         team = Team.objects.get(founder=user)
-        student = Student.objects.filter(team=team.teamID)
 
-        return render(request, self.template_name, {'user':user, 'student':student})
+        if Student.objects.filter(team=team.teamID).count() != 0:
+            student = Student.objects.filter(team=team.teamID)
+
+            return render(request, self.template_name, {'user':user, 'student':student})
+        else:
+            return redirect(reverse('team:deleteTeam', kwargs={'user': user}))
     
     def post(self, request, user):
         team = Team.objects.get(founder=user)
@@ -208,6 +212,18 @@ class leaveTeamView(View):
         Student.objects.get(username=newLeader.username).delete()
         Team.objects.filter(teamID=team.teamID).update(members=F('members')-1)
         
+
+        return redirect(reverse('team:teamTableView', kwargs={'user': user}))
+
+class deleteTeamView(View):
+    template_name="team/deleteTeam.html"
+
+    def get(self, request, user):
+        return render(request, self.template_name, {'user':user})
+    
+    def post(self, request, user):
+
+        Team.objects.get(founder=user).delete()
 
         return redirect(reverse('team:teamTableView', kwargs={'user': user}))
 
