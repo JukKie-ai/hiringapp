@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team</title>
+  </head>
+  <body>
+    {% include 'team/navbar.html' %} {% if team.founder.username == user %}
+    <a href="{% url 'team:request' user%}"
+      ><button>View Your Team Requests</button></a
+    >
+    <br /><br />
+    <a href="{% url 'team:members' user%}"
+      ><button>View Team Members</button></a
+    >
+    <h1>YOU ARE ALREADY A TEAM FOUNDER</h1>
+    <a href="{% url 'team:editTeam' user%}"><button>EDIT DETAILS</button></a>
+    <h2>Team ID: {{team.teamID}}</h2>
+    <h2>Team Founder ID: {{team.founder.username}}</h2>
+    <h2>
+      Team Founder Name: {{team.founder.firstName}} {{team.founder.lastName}}
+    </h2>
+    <h2>Team Description: {{team.description}}</h2>
+    <h2>Team Members: {{team.members}}</h2>
+    <h2>Team Max Members: {{team.max_members}}</h2>
+    {% elif loggedUser.status != True %}
+    <h1>OPEN TEAMS</h1>
+    <a href="{% url 'team:createTeam' user%}"><button>Create Team</button></a>
+    <br /><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Team ID</th>
+          <th>Founder</th>
+          <th>Current Members</th>
+          <th>Max Members</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for i in teamList %} {% if i.members != i.max_members %}
+      <tr>
+        <td>{{i.teamID}}</td>
+        <td>{{i.founder.firstName}}</td>
+        <td>{{i.members}}</td>
+        <td>{{i.max_members}}</td>
+        <td>
+          <a href="teamView/{{i.teamID}}"><button>View</button></a>
+        </td>
+        <td>
+          <a href="joinTeam/{{i.teamID}}"><button>Request</button></a>
+        </td>
+      </tr>
+      {% endif %} {% endfor %}
+    </table>
+    <h1>CLOSE TEAMS</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Team ID</th>
+          <th>Founder</th>
+          <th>Current Members</th>
+          <th>Max Members</th>
+        </tr>
+      </thead>
+      {% for i in teamList %} {% if i.members >= i.max_members %}
+      <tr>
+        <td>{{i.teamID}}</td>
+        <td>{{i.founder.firstName}}</td>
+        <td>{{i.members}}</td>
+        <td>{{i.max_members}}</td>
+      </tr>
+      {% endif %} {% endfor %}
+    </table>
+    {% else %}
+    <h1>YOU ARE ALREADY A TEAM MEMBER</h1>
+    <h2>Team ID: {{student.team.teamID}}</h2>
+    <h2>Team Founder Username: {{student.team.founder.username}}</h2>
+    <h2>
+      Team Founder Name: {{student.team.founder.firstName}}
+      {{student.team.founder.lastName}}
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Section</th>
+        </tr>
+        {% for i in members %}
+        <tr>
+          <td>{{i.username.username}}</td>
+          <td>{{i.username.firstName}}</td>
+          <td>{{i.username.lastName}}</td>
+          <td>{{i.username.section}}</td>
+        </tr>
+        {% endfor %}
+      </thead>
+    </table>
+    {% endif %}
+  </body>
+</html>

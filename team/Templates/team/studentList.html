@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List</title>
+  </head>
+  <body>
+    {% include 'team/navbar.html' %}
+    <h1>Team Founders</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Course</th>
+          <th>Team</th>
+        </tr>
+      </thead>
+      {% for i in team %}
+      <tr>
+        <td>{{i.founder.username}}</td>
+        <td>{{i.founder.firstName}}</td>
+        <td>{{i.founder.lastName}}</td>
+        <td>{{i.founder.course}}</td>
+        <td>{{i.teamID}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h1>Student With Team</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Course</th>
+          <th>Team</th>
+        </tr>
+      </thead>
+      {% for i in student %}
+      <tr>
+        <td>{{i.username.username}}</td>
+        <td>{{i.username.firstName}}</td>
+        <td>{{i.username.lastName}}</td>
+        <td>{{i.username.course}}</td>
+        <td>{{i.team.teamID}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h1>Student With No Team</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Course</th>
+        </tr>
+      </thead>
+      {% for i in noteam %}
+      <tr>
+        <td>{{i.username}}</td>
+        <td>{{i.firstName}}</td>
+        <td>{{i.lastName}}</td>
+        <td>{{i.course}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

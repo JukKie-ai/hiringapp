@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Team</title>
+  </head>
+  <body>
+    <div>
+      <form method="post">
+        {% csrf_token %}
+        <h1>EDIT TEAM</h1>
+        <div>
+          <label for="description">Team Desrcription: </label>
+          <textarea name="description" rows="12" cols="35">
+                {{team.description}}</textarea
+          >
+        </div>
+        <label for="max_members">Max Members: </label>
+        <input
+          type="number"
+          name="max_members"
+          required="required"
+          value="{{team.max_members}}"
+        />
+        <br />
+        <br />
+        <button type="submit" value="Save Changes">Save Changes</button>
+      </form>
+    </div>
+  </body>
+</html>

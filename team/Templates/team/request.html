@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEAM Request</title>
+  </head>
+  {% include 'team/navbar.html' %}
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Section</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for i in teamID %}
+      <tr>
+        <td>{{i.username.username}}</td>
+        <td>{{i.username.firstName}}</td>
+        <td>{{i.username.lastName}}</td>
+        <td>{{i.username.section}}</td>
+        <td>
+          <a href="acceptRequest/{{i.requestTeamID}}"
+            ><button>Accept</button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

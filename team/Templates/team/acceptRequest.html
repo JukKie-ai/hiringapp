@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% include 'team/navbar.html' %}
+    <form method="POST">
+      {% csrf_token %}
+      <h2>Accept Member</h2>
+      <br />
+      <br />
+      <h3>
+        You're about to accept {{req.username.firstName}}. Please click the
+        button below to continue.
+      </h3>
+      <br />
+      <h2>Details</h2>
+      <h3>First Name: {{req.username.firstName}}</h3>
+      <h3>Last Name: {{req.username.lastName}}</h3>
+      <h3>Course: {{req.username.course}}</h3>
+      <h3>Reason to join the team: {{req.reason}}</h3>
+      <br /><br />
+      <div>
+        <input type="submit" class="button1" value="Accept" />
+        <a href="{% url 'team:teamTableView' user%}"
+          ><div class="button">BACK</div></a
+        >
+      </div>
+    </form>
+  </body>
+</html>

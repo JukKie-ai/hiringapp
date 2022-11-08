@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% include 'team/navbar.html' %}
+    <form method="POST">
+      {% csrf_token %}
+      <h2>Kick Member</h2>
+      <br />
+      <br />
+      <h3>
+        You're about to KICK {{team.username.firstName}}. Please click the
+        button below to continue.
+      </h3>
+      <br />
+      <br /><br />
+      <div>
+        <input type="submit" class="button1" value="Kick" />
+        <a href="{% url 'team:teamTableView' user%}"
+          ><div class="button">BACK</div></a
+        >
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register User</title>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      <h1>Sign Up</h1>
+
+      <div>
+        <label for="username">username:</label>
+        <input type="text" name="username" required="required" />
+
+        <label for="password">password:</label>
+        <input type="password" name="password" required="required" />
+
+        <label for="username">firstname:</label>
+        <input type="text" name="firstName" required="required" />
+
+        <label for="username">lastname:</label>
+        <input type="text" name="lastName" required="required" />
+
+        <label for="username">course:</label>
+        <input type="text" name="course" list="coursename" />
+        <datalist id="coursename">
+          <option value="Information Technology"></option>
+          <option value="Computer Science"></option>
+        </datalist>
+
+        <!-- {% if messages %} {% for message in messages %}
+        <div class="error-message">
+          <span
+            class="closebtn"
+            onclick="this.parentElement.style.display='none';"
+            >&times;</span
+          >
+          {{message}}
+        </div>
+        {% endfor %} {% endif %} -->
+      </div>
+      <button type="submit" value="Register">Sign Up</button>
+    </form>
+  </body>
+</html>
