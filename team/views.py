@@ -189,4 +189,30 @@ def kickMemberView(request, id, user):
     
     return render(request, 'team/kickMember.html', context)
 
+class leaveTeamView(View):
+    template_name="team/leaveTeam.html"
+
+    def get(self, request, user):
+        team = Team.objects.get(founder=user)
+        student = Student.objects.filter(team=team.teamID)
+
+        return render(request, self.template_name, {'user':user, 'student':student})
+    
+    def post(self, request, user):
+        team = Team.objects.get(founder=user)
+        studentID = request.POST.get('studentList')
+        newLeader = User.objects.get(pk=studentID)
+
+        User.objects.filter(pk=user).update(status=False)
+        Team.objects.filter(founder=user).update(founder=newLeader.username)
+        Student.objects.get(username=newLeader.username).delete()
+        Team.objects.filter(teamID=team.teamID).update(members=F('members')-1)
+        
+
+        return redirect(reverse('team:teamTableView', kwargs={'user': user}))
+
+
+
+
+
 

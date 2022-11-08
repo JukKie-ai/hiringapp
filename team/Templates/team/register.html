@@ -24,23 +24,12 @@
         <label for="username">lastname:</label>
         <input type="text" name="lastName" required="required" />
 
-        <label for="username">course:</label>
+        <label for="course">course:</label>
         <input type="text" name="course" list="coursename" />
         <datalist id="coursename">
           <option value="Information Technology"></option>
           <option value="Computer Science"></option>
         </datalist>
-
-        <!-- {% if messages %} {% for message in messages %}
-        <div class="error-message">
-          <span
-            class="closebtn"
-            onclick="this.parentElement.style.display='none';"
-            >&times;</span
-          >
-          {{message}}
-        </div>
-        {% endfor %} {% endif %} -->
       </div>
       <button type="submit" value="Register">Sign Up</button>
     </form>
