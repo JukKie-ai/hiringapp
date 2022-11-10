@@ -8,7 +8,7 @@
   </head>
   <body>
     {% include 'team/navbar.html' %}
-    <h1>Team Founders</h1>
+    <h1>Teams</h1>
     <table>
       <thead>
         <tr>
@@ -17,6 +17,7 @@
           <th>Last Name</th>
           <th>Course</th>
           <th>Team</th>
+          <th>Action</th>
         </tr>
       </thead>
       {% for i in team %}
@@ -26,6 +27,9 @@
         <td>{{i.founder.lastName}}</td>
         <td>{{i.founder.course}}</td>
         <td>{{i.teamID}}</td>
+        <td>
+          <a href="teamView/{{i.teamID}}"><button>View</button></a>
+        </td>
       </tr>
       {% endfor %}
     </table>

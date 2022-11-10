@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin View</title>
+  </head>
+  <body>
+    {% include 'team/adminnavbar.html' %}
+    <br />
+    <br />
+    <form method="get">
+      <div class="search">
+        {{myFilter.form}}
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+    <h1>Teams</h1>
+    <hr />
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th>Team ID |</th>
+          <th>Team Founder ID |</th>
+          <th>Current Members |</th>
+          <th>Max Members |</th>
+          <th>Section |</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for i in team %}
+      <tr>
+        <td>{{i.teamID}}</td>
+        <td>{{i.founder.username}}</td>
+        <td>{{i.members}}</td>
+        <td>{{i.max_members}}</td>
+        <td>{{i.section}}</td>
+        <td>
+          <a href="adminTeam/{{i.teamID}}"><button>View Details</button></a>
+        </td>
+        <td>
+          <a href="deleteAdminTeam/{{i.teamID}}"
+            ><button>Delete Team</button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

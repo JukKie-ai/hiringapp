@@ -8,15 +8,22 @@
   </head>
   <body>
     {% include 'team/navbar.html' %} {% if team.founder.username == user %}
-    <a href="{% url 'team:request' user%}"
-      ><button>View Your Team Requests</button></a
-    >
+    <h1>YOU ARE ALREADY A TEAM FOUNDER</h1>
+    {% if req and current_members != max_members %}
+    <a href="{% url 'team:request' user%}">You Have New Team Requests</a>
+    {% elif current_members == max_members %}
+    <p></p>
+    {% else %}
+    <a href="#">No New Team Requests</a>
+    {% endif %}
     <br /><br />
     <a href="{% url 'team:members' user%}"
       ><button>View Team Members</button></a
     >
-    <h1>YOU ARE ALREADY A TEAM FOUNDER</h1>
     <a href="{% url 'team:editTeam' user%}"><button>EDIT DETAILS</button></a>
+    <br />
+    <br />
+    <hr />
     <h2>Team ID: {{team.teamID}}</h2>
     <h2>Team Founder ID: {{team.founder.username}}</h2>
     <h2>
@@ -29,6 +36,12 @@
     <h1>OPEN TEAMS</h1>
     <a href="{% url 'team:createTeam' user%}"><button>Create Team</button></a>
     <br /><br />
+    <form method="get">
+      <div class="search">
+        {{myFilter.form}}
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
     <table>
       <thead>
         <tr>
@@ -49,7 +62,7 @@
           <a href="teamView/{{i.teamID}}"><button>View</button></a>
         </td>
         <td>
-          <a href="joinTeam/{{i.teamID}}"><button>Request</button></a>
+          <a href="joinTeam/{{i.teamID}}"><button>Join</button></a>
         </td>
       </tr>
       {% endif %} {% endfor %}

@@ -7,10 +7,12 @@
     <title>Delete Team</title>
   </head>
   <body>
+    {% include 'team/navbar.html' %}
     <form method="post">
       {% csrf_token %}
       <h2>
-        You are about to delete the team.
+        Since you are the only member of the team, your only choice is to delete
+        it.
         <br />
         <br />
       </h2>
