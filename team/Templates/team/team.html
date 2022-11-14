@@ -47,6 +47,7 @@
         <tr>
           <th>Team ID</th>
           <th>Founder</th>
+          <th>Section</th>
           <th>Current Members</th>
           <th>Max Members</th>
           <th>Action</th>
@@ -55,7 +56,8 @@
       {% for i in teamList %} {% if i.members != i.max_members %}
       <tr>
         <td>{{i.teamID}}</td>
-        <td>{{i.founder.firstName}}</td>
+        <td>{{i.founder.firstName}} {{i.founder.lastName}}</td>
+        <td>{{i.section}}</td>
         <td>{{i.members}}</td>
         <td>{{i.max_members}}</td>
         <td>

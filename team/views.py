@@ -151,10 +151,12 @@ def adminTeamView(request, id, user):
 
 def deleteAdminTeamView(request, id, user):
     team = Team.objects.get(pk=id)
+    founder = Team.objects.get(founder=team.founder)
     members = Student.objects.filter(team=team.teamID)
 
     if request.method == 'POST':
         Team.objects.get(pk=id).delete()
+        User.objects.filter(pk=founder.founder.username).update(status=False)
 
         return redirect(reverse('team:admin', kwargs={'user': user}))
 
