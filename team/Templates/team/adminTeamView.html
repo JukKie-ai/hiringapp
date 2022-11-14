@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Member List</title>
+    <title>Team View</title>
   </head>
   <body>
-    {% include 'team/navbar.html' %}
+    {% include 'team/adminnavbar.html' %}
+    <h1>Description</h1>
+    {{team.description}}
+    <h3>Founder</h3>
+    {{team.founder.firstName}} {{team.founder.lastName}}
+    <h3>Team Members</h3>
     <table>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Student ID</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Section</th>
-          <th>Action</th>
+          <th>Course</th>
         </tr>
       </thead>
       {% for i in members %}
@@ -23,19 +27,11 @@
         <td>{{i.username.username}}</td>
         <td>{{i.username.firstName}}</td>
         <td>{{i.username.lastName}}</td>
-        <td>{{i.username.section}}</td>
-        <td>
-          <a href="kickMember/{{i.studentID}}"><button>KICK</button></a>
-        </td>
+        <td>{{i.username.course}}</td>
       </tr>
       {% endfor %}
     </table>
-    <br />
-    <br />
-    <a href="{% url 'team:leaveTeam' user%}"
-      ><button>LEAVE/DELETE TEAM</button></a
-    ><br />
-    <br />
-    <a href="{% url 'team:teamTableView' user%}"><button>Back</button></a>
+    <br /><br />
+    <a href="{% url 'team:admin' user%}"><div class="button">BACK</div></a>
   </body>
 </html>

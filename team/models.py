@@ -12,10 +12,17 @@ class User(models.Model):
     course = models.CharField(choices=COURSE_CHOICES, max_length=50, null=True)
     status = models.BooleanField(default=False)
 
+class Admin(models.Model):
+    username = models.CharField(max_length=30, primary_key=True)
+    password = models.CharField(max_length=50)
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+
 class Team(models.Model):
     teamID = models.AutoField(primary_key=True)
     founder = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     description = models.TextField()
+    section = models.CharField(max_length=10, null=True)
     members = models.IntegerField(default=0)
     max_members = models.IntegerField()
 

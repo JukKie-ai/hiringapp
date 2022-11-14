@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team View</title>
+  </head>
+  <body>
+    {% include 'team/adminnavbar.html' %}
+    <form method="post">
+      {% csrf_token %}
+      <h1>Description</h1>
+      {{team.description}}
+      <h3>Founder</h3>
+      {{team.founder.firstName}} {{team.founder.lastName}}
+      <h3>Team Members</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Course</th>
+          </tr>
+        </thead>
+        {% for i in members %}
+        <tr>
+          <td>{{i.username.username}}</td>
+          <td>{{i.username.firstName}}</td>
+          <td>{{i.username.lastName}}</td>
+          <td>{{i.username.course}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br /><br />
+      <button type="submit" value="Register">Delete Team</button>
+    </form>
+    <a href="{% url 'team:admin' user%}"><div class="button">BACK</div></a>
+  </body>
+</html>
